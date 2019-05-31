@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:clickable="true"
+    >
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="14dp"
+    android:paddingRight="14dp"
+    android:orientation="vertical"
+    android:id="@+id/topic_holder">
+    <TextView
+        android:id="@+id/topic_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Topic" />
+
+    <TextView
+        android:id="@+id/topic_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="what this topic ia all about ..." />
+
+</LinearLayout>
+    <android.support.v7.widget.AppCompatCheckBox
+        android:layout_width="wrap_content"
+        android:layout_height= "wrap_content"
+        android:layout_below="@id/topic_holder"
+        android:layout_alignRight="@+id/topic_holder"
+        android:layout_alignEnd="@id/topic_holder"
+
+        />
+
+</RelativeLayout>
+
