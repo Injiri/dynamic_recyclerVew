@@ -1,5 +1,6 @@
 package com.example.genericc;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -20,7 +21,7 @@ import android.view.Menu;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, topicsAdapter.onTopicClickListener {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter topicsAdapter;
@@ -64,30 +65,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         topicList.add(topic2);
         topicList.add(topic3);
 
-        topicsAdapter = new topicsAdapter(this, topicList);
+        topicsAdapter = new topicsAdapter(topicList, this);//this just pases the implemented onclicklistener to this method call
 
         //pass the adapter to the recyclerview
         recyclerView.setAdapter(topicsAdapter);
-        recyclerView.addOnItemTouchListener(new recyclerTouchListener(this, recyclerView, new recyclerTouchListener.ClickListener() {
-
-            @Override
-            public void onClick(View view, int position) {
-
-            }
-
-            @Override
-            public void onLongPress(View view, int position) {
-                //open a new intent for the clicked topic item
-                ActionBar actionBar = getSupportActionBar();
-
-                if (actionBar != null) {
-                    //display the home arrow button on the actionBar
-                    actionBar.setDisplayHomeAsUpEnabled(true);
-                }
-
-
-            }
-        }));
+//        recyclerView.addOnItemTouchListener(new recyclerTouchListener(this, recyclerView, new recyclerTouchListener.TopicClickListener() {
+////
+////            @Override
+////            public void onClick(View view, int position) {
+////
+////            }
+////
+////            @Override
+////            public void onLongPress(View view, int position) {
+////
+////                //open a new intent for the clicked topic item
+////                ActionBar actionBar = getSupportActionBar();
+////
+////                if (actionBar != null) {
+////                    //display the home arrow button on the actionBar
+////                    actionBar.setDisplayHomeAsUpEnabled(true);
+////                }
+////
+////            }
+////        }));
     }
 
     @Override
@@ -150,5 +151,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onTopicclicked(int position) {
+//navigate to new activity
+        topicList.get(position); //refference to selected object
+        Intent intent = new Intent();
+        startActivity(intent);
     }
 }
