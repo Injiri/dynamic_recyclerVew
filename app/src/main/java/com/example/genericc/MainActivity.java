@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onTopicclicked(int position) {
 //navigate to new activity
         topicList.get(position); //refference to selected object
-        Intent intent = new Intent();
+        Intent intent = new Intent(this, TopicDetailActivity.class);
         startActivity(intent);
     }
 }
